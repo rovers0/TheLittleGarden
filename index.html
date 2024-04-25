@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div id="slide">
+
+        </div>
+        <div class="buttons">
+            <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
+            <button id="next"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const galleryContainer = document.getElementById("slide");
+            const imgFolder = "./img/";
+            const imageExtensions = ".jpg";
+
+            // Replace this with the actual number of images in your 'img' folder
+            const numOfImages = 6;
+
+            for (let i = 1; i <= numOfImages; i++) {
+                const imageUrl = `${imgFolder}${i}${imageExtensions}`;
+
+                const item = document.createElement("div");
+                item.classList.add("item");
+                item.style.backgroundImage = `url('${imageUrl}')`;
+
+                const content = document.createElement("div");
+                content.classList.add("content");
+
+                const name = document.createElement("div");
+                name.classList.add("name");
+                name.textContent = "The Little Garden";
+
+                const des = document.createElement("div");
+                des.classList.add("des");
+                des.textContent = "🌵Số 48, Ấp Đông Thọ, Xã Thạnh Trị, Tân Hiệp, Kiên Giang." ;
+
+                const button = document.createElement('a');
+                button.setAttribute('href', "https://www.facebook.com/dotruonggiang.dtg");
+                button.innerText  = "Liên hệ Ngay"
+
+                content.appendChild(name);
+                content.appendChild(des);
+                content.appendChild(button);
+
+                item.appendChild(content);
+
+                galleryContainer.appendChild(item);
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('next').onclick = function(){
+            let lists = document.querySelectorAll('.item');
+            document.getElementById('slide').appendChild(lists[0]);
+        }
+        document.getElementById('prev').onclick = function(){
+            let lists = document.querySelectorAll('.item');
+            document.getElementById('slide').prepend(lists[lists.length - 1]);
+        }
+    </script>
+</body>
+</html>
+  
